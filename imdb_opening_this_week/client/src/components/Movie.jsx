@@ -4,7 +4,7 @@ class Movie extends React.Component {
   render() {
     return(
       <div className="movie">
-        The War for the Planet of the Apes
+        <a href={this.props.url}>{this.props.children}</a>
       </div>
     )
   }
