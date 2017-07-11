@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Chart from "./containers/Chart.jsx";
 
 window.addEventListener('load', function () {
   ReactDOM.render(
-    <h1>App Started</h1>,
+    <Chart>Hello Awful</Chart>,
     document.getElementById('app')
   );
 });
