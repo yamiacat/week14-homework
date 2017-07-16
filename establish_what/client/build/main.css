@@ -3,11 +3,26 @@ body {
 }
 
 img {
-  /*max-width: 250px;*/
-  max-height: 300px;
-  margin: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  max-height: 250px;
+  max-width: 200px;
 }
 
-#card-wrapper {
-  display: inline-block;
+.all-cards-wrapper {
+  max-width: 1000px
+}
+
+.card-wrapper {
+  height: 320px;
+  width: 220px;
+  border: black solid 1px;
+  float: left;
+  /*display: inline-block;*/
+}
+
+.card-name {
+  margin-left: 80px;
 }

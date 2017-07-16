@@ -11,7 +11,7 @@ class Controller extends React.Component {
           id: 0,
           pic: "/public/images/dalek.jpg",
           name: "Dalek",
-          showing: true
+          showing: false
         },
         {
           id: 1,
@@ -57,6 +57,20 @@ class Controller extends React.Component {
         }
       ]
     }
+    this.flipCard = this.flipCard.bind(this);
+  }
+
+  flipCard(cardID) {
+    console.log("flipCard triggered", cardID);
+    const currentAllCards = this.state.allCards;
+
+    if(currentAllCards[cardID].showing == true) {
+      currentAllCards[cardID].showing = false;
+      this.setState({currentAllCards});
+    } else {
+      currentAllCards[cardID].showing = true;
+      this.setState({currentAllCards});
+    }
   }
 
   render() {
@@ -64,7 +78,7 @@ class Controller extends React.Component {
     return(
       <div>
         <h1>ESTABLISH WHAT, HU-MAN.</h1>
-        <QuestionLayer allCards={this.state.allCards}></QuestionLayer>
+        <QuestionLayer allCards={this.state.allCards} flipCard={this.flipCard}></QuestionLayer>
       </div>
     )
 

@@ -4,10 +4,11 @@ export const Card = (props) => {
 
   if (!props) return null;
 
+
   return(
-    <div id="card-wrapper">
+    <div className="card-wrapper" onClick={(e) => {props.flipCard(props.value)}}>
       <img src={props.pic}></img>
-      <p>{props.name}</p>
+      <p className="card-name">{props.name}</p>
     </div>
   )
 }

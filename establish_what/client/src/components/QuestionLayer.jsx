@@ -11,7 +11,7 @@ class QuestionLayer extends React.Component {
 
     return(
       <div>
-        <CardRenderer allCards={this.props.allCards}></CardRenderer>
+        <CardRenderer allCards={this.props.allCards} flipCard={this.props.flipCard}></CardRenderer>
         <h2>CALCULATE YOUR QUERY:</h2>
       </div>
     )

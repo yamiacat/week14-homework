@@ -10,12 +10,22 @@ class CardRenderer extends React.Component {
   render() {
 
     const currentCards = this.props.allCards.map((card, index) => {
-      return <Card key={card.id} pic={card.pic} name={card.name}></Card>
+      let picURL = "";
+
+      if(card.showing === true) {
+        picURL = card.pic
+      } else {
+        picURL = "/public/images/cardback.jpg"
+      }
+
+
+
+      return <Card key={card.id} value={card.id} pic={picURL} name={card.name} flipCard={this.props.flipCard}></Card>
     });
 
 
     return(
-      <div id="all-cards-wrapper">
+      <div className="all-cards-wrapper">
         {currentCards}
       </div>
     )
