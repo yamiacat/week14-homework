@@ -20,8 +20,6 @@ class CardRenderer extends React.Component {
         picURL = "/public/images/cardback.jpg"
       }
 
-
-
       return <Card key={card.id} value={card.id} pic={picURL} name={name} flipCard={this.props.flipCard}></Card>
     });
 
@@ -29,11 +27,22 @@ class CardRenderer extends React.Component {
     return(
       <div className="all-cards-wrapper">
         {currentCards}
+
+        <div id="win-modal">
+          <div id="win-wrapper">
+            <h1>YOU WIN!</h1>
+          </div>
+        </div>
+
+        <div id="lose-modal">
+          <div id="lose-wrapper">
+            <h1>YOU LOSE, HUM-AN!</h1>
+          </div>
+        </div>
+
       </div>
     )
-
   }
-
 }
 
 

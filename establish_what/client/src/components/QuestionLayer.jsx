@@ -41,14 +41,22 @@ class QuestionLayer extends React.Component {
         <div id="answer-wrapper">
           <h3>
             OUTPUT:
+          </h3>
+          <h3>
             {this.props.answer}
           </h3>
         </div>
 
+        <div id="guess-wrapper">
+          <form onSubmit={this.props.submitGuess}>
+            <input type="submit" value="SUBMIT FEEBLE GUESS"></input>
+          </form>
+        </div>
+
+
       </div>
     )
   }
-
 }
 
 export default QuestionLayer;

@@ -98,12 +98,14 @@ class Controller extends React.Component {
       ],
       theDroidURLookingFor: null,
       answer: "",
-      attributeToCheck: ""
+      attributeToCheck: "",
+      showingCards: 8
     }
     this.flipCard = this.flipCard.bind(this);
     this.startGame = this.startGame.bind(this);
     this.selectQuestion = this.selectQuestion.bind(this);
     this.submitQuestion = this.submitQuestion.bind(this);
+    this.submitGuess = this.submitGuess.bind(this);
   }
 
   startGame(event) {
@@ -115,7 +117,7 @@ class Controller extends React.Component {
     this.setState({ theDroidURLookingFor: selectedCard});
     this.flipAllCards();
 
-    const questionWrapper = document.getElementById('question-wrapper');
+    const questionWrapper = document.getElementById("question-wrapper");
     questionWrapper.style.display = "block";
   }
 
@@ -135,32 +137,65 @@ class Controller extends React.Component {
 
     const targetDroid = this.state.theDroidURLookingFor;
     const currentAttributeToCheck = this.state.attributeToCheck;
-    console.log("targetDroid[currentAttributeToCheck]", targetDroid[currentAttributeToCheck]);
+
+    const answerWrapper = document.getElementById("answer-wrapper");
+    answerWrapper.style.display = "block";
+
     if(targetDroid[currentAttributeToCheck] == true){
-      console.log("AFFIRMATIVE");
+      this.setState({ answer: "AFFIRMATIVE" });
     } else {
-      console.log("NEGATIVE");
+      this.setState({ answer: "NEGATIVE" });
     }
   }
 
   selectQuestion(event) {
-    // const currentQuestion = this.state.questionToAnswer;
     this.setState({ attributeToCheck: event.target.value})
 
     console.log("selectQuestion hit", event.target.value);
   }
 
+  submitGuess(event) {
+    event.preventDefault();
+    const winModal = document.getElementById("win-modal");
+    const loseModal = document.getElementById("lose-modal");
+    const targetDroid = this.state.theDroidURLookingFor;
+    const guessCard = this.state.allCards.filter((card) => {
+      return card.showing == true;
+    });
+
+    if(guessCard[0].id == targetDroid.id) {
+      console.log("WIIIIIIN");
+      winModal.style.display = "block";
+    } else {
+      console.log("LOOOOOOOOSE");
+      loseModal.style.display = "block";
+
+    }
+  }
+
   flipCard(cardID) {
+    const guessWrapper = document.getElementById("guess-wrapper");
     const currentAllCards = this.state.allCards;
+    let currentShowingCards = this.state.showingCards;
 
     if(!this.state.theDroidURLookingFor) return null;
 
     if(currentAllCards[cardID].showing == true) {
       currentAllCards[cardID].showing = false;
+      currentShowingCards -= 1;
       this.setState({currentAllCards});
+      this.setState({showingCards: currentShowingCards})
     } else {
       currentAllCards[cardID].showing = true;
+      currentShowingCards += 1;
       this.setState({currentAllCards});
+      this.setState({showingCards: currentShowingCards})
+    }
+
+    if(currentShowingCards == 1) {
+      guessWrapper.style.display = "block";
+    } else {
+      guessWrapper.style.display = "none";
     }
   }
 
@@ -179,6 +214,7 @@ class Controller extends React.Component {
           submitQuestion={this.submitQuestion}
           selectQuestion={this.selectQuestion}
           answer={this.state.answer}
+          submitGuess={this.submitGuess}
           ></QuestionLayer>
       </div>
     )
