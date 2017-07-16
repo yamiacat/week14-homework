@@ -1,10 +1,13 @@
 import React from 'react';
 
-export const Card = () => {
+export const Card = (props) => {
+
+  if (!props) return null;
 
   return(
-    <div>
-      THIS REPRESENTS ONE CARD
+    <div id="card-wrapper">
+      <img src={props.pic}></img>
+      <p>{props.name}</p>
     </div>
   )
 }

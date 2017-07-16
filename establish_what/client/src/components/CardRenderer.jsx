@@ -3,12 +3,20 @@ import {Card} from './Card.jsx';
 
 class CardRenderer extends React.Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
 
+    const currentCards = this.props.allCards.map((card, index) => {
+      return <Card key={card.id} pic={card.pic} name={card.name}></Card>
+    });
+
+
     return(
-      <div>
-        Cards here  001010110010101
-        <Card></Card>
+      <div id="all-cards-wrapper">
+        {currentCards}
       </div>
     )
 

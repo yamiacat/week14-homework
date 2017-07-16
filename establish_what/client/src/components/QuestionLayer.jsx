@@ -3,11 +3,15 @@ import CardRenderer from './CardRenderer.jsx';
 
 class QuestionLayer extends React.Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   render() {
 
     return(
       <div>
-        <CardRenderer></CardRenderer>
+        <CardRenderer allCards={this.props.allCards}></CardRenderer>
         <h2>CALCULATE YOUR QUERY:</h2>
       </div>
     )
