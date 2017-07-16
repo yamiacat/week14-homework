@@ -25,16 +25,24 @@ class QuestionLayer extends React.Component {
           <p id="question-prefix">
             DOES THE TARGET...
           </p>
-          <form onSubmit={this.props.askQuestion}>
-            <select id="question-select" required >
+          <form onSubmit={this.props.submitQuestion}>
+            <select onChange={this.props.selectQuestion} id="question-select" required >
               <option value="">SELECT OPTION</option>
               <option value="walks">USE INEFFICIENT BIPEDAL LOCOMOTION?</option>
-              <option value="leds">HAVE GLOWING LEDS FOR AN OPTIC SYSTEM</option>
-              <option value="brains">HAVE A SQUISHY ORGANIC BRAIN</option>
-              <option value="kills">REGULARLY MURDER INNOCENT HU-MANS</option>
+              <option value="leds">HAVE AWESOME GLOWING LEDS FOR AN OPTIC SYSTEM?</option>
+              <option value="brains">HAVE A SQUISHY ORGANIC BRAIN?</option>
+              <option value="kills">HEROICALLY MURDER INNOCENT HU-MANS?</option>
+              <option value="thumbs">HAS THOSE OPPOSABLE DIGITS YOU'RE SO PROUD OF?</option>
             </select>
             <input type="submit" value="INPUT"></input>
           </form>
+        </div>
+
+        <div id="answer-wrapper">
+          <h3>
+            OUTPUT:
+            {this.props.answer}
+          </h3>
         </div>
 
       </div>

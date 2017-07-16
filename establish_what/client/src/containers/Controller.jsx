@@ -11,56 +11,99 @@ class Controller extends React.Component {
           id: 0,
           pic: "/public/images/dalek.jpg",
           name: "Dalek",
-          showing: false
+          showing: false,
+          walks: false,
+          leds: true,
+          brains: true,
+          kills: true,
+          thumbs: false
         },
         {
           id: 1,
           pic: "/public/images/ed209.jpg",
           name: "ED-209",
-          showing: false
+          showing: false,
+          walks: true,
+          leds: false,
+          brains: false,
+          kills: true,
+          thumbs: false
         },
         {
           id: 2,
           pic: "/public/images/hal9000.jpg",
           name: "HAL-9000",
-          showing: false
+          showing: false,
+          walks: false,
+          leds: true,
+          brains: false,
+          kills: true,
+          thumbs: false
         },
         {
           id: 3,
           pic: "/public/images/johnny5.jpg",
           name: "Johnny 5",
-          showing: false
+          showing: false,
+          walks: false,
+          leds: false,
+          brains: false,
+          kills: false,
+          thumbs: true
         },
         {
           id: 4,
           pic: "/public/images/pris.jpg",
           name: "Pris",
-          showing: false
+          showing: false,
+          walks: true,
+          leds: false,
+          brains: true,
+          kills: true,
+          thumbs: true
         },
         {
           id: 5,
           pic: "/public/images/robocop.jpg",
           name: "Robocop",
-          showing: false
+          showing: false,
+          walks: true,
+          leds: false,
+          brains: true,
+          kills: false,
+          thumbs: true
         },
         {
           id: 6,
           pic: "/public//images/t800.jpg",
           name: "T-800",
-          showing: false
+          showing: false,
+          walks: true,
+          leds: true,
+          brains: false,
+          kills: true,
+          thumbs: true
         },
         {
           id: 7,
-          pic: "/public/images/walle.jpg",
-          name: "Wall-E",
-          showing: false
+          pic: "/public/images/eve.jpg",
+          name: "Eve",
+          showing: false,
+          walks: false,
+          leds: true,
+          brains: false,
+          kills: false,
+          thumbs: false
         }
       ],
-      theDroidURLookingFor: null
+      theDroidURLookingFor: null,
+      answer: "",
+      attributeToCheck: ""
     }
     this.flipCard = this.flipCard.bind(this);
     this.startGame = this.startGame.bind(this);
-    this.askQuestion = this.askQuestion.bind(this);
+    this.selectQuestion = this.selectQuestion.bind(this);
+    this.submitQuestion = this.submitQuestion.bind(this);
   }
 
   startGame(event) {
@@ -86,10 +129,25 @@ class Controller extends React.Component {
     this.setState({ allCards: flippedAllCards})
   }
 
-  askQuestion(event) {
+  submitQuestion(event) {
     event.preventDefault();
+    console.log("submitQuestion hit");
 
-    
+    const targetDroid = this.state.theDroidURLookingFor;
+    const currentAttributeToCheck = this.state.attributeToCheck;
+    console.log("targetDroid[currentAttributeToCheck]", targetDroid[currentAttributeToCheck]);
+    if(targetDroid[currentAttributeToCheck] == true){
+      console.log("AFFIRMATIVE");
+    } else {
+      console.log("NEGATIVE");
+    }
+  }
+
+  selectQuestion(event) {
+    // const currentQuestion = this.state.questionToAnswer;
+    this.setState({ attributeToCheck: event.target.value})
+
+    console.log("selectQuestion hit", event.target.value);
   }
 
   flipCard(cardID) {
@@ -118,7 +176,9 @@ class Controller extends React.Component {
           flipCard={this.flipCard}
           startGame={this.startGame}
           gameStatus={gameStatus}
-          askQuestion={this.askQuestion}
+          submitQuestion={this.submitQuestion}
+          selectQuestion={this.selectQuestion}
+          answer={this.state.answer}
           ></QuestionLayer>
       </div>
     )

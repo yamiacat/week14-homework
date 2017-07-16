@@ -36,6 +36,11 @@ img {
   margin-top: 20px;
 }
 
+#answer-wrapper  {
+  display: none;
+  margin-top: 20px;
+}
+
 #question-select, #question-prefix {
   display: inline;
 }
