@@ -60,6 +60,7 @@ class Controller extends React.Component {
     }
     this.flipCard = this.flipCard.bind(this);
     this.startGame = this.startGame.bind(this);
+    this.askQuestion = this.askQuestion.bind(this);
   }
 
   startGame(event) {
@@ -70,6 +71,9 @@ class Controller extends React.Component {
 
     this.setState({ theDroidURLookingFor: selectedCard});
     this.flipAllCards();
+
+    const questionWrapper = document.getElementById('question-wrapper');
+    questionWrapper.style.display = "block";
   }
 
   flipAllCards() {
@@ -80,11 +84,18 @@ class Controller extends React.Component {
         return card;
     })
     this.setState({ allCards: flippedAllCards})
+  }
 
+  askQuestion(event) {
+    event.preventDefault();
+
+    
   }
 
   flipCard(cardID) {
     const currentAllCards = this.state.allCards;
+
+    if(!this.state.theDroidURLookingFor) return null;
 
     if(currentAllCards[cardID].showing == true) {
       currentAllCards[cardID].showing = false;
@@ -107,6 +118,7 @@ class Controller extends React.Component {
           flipCard={this.flipCard}
           startGame={this.startGame}
           gameStatus={gameStatus}
+          askQuestion={this.askQuestion}
           ></QuestionLayer>
       </div>
     )

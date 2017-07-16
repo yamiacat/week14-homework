@@ -12,12 +12,12 @@ img {
 }
 
 .all-cards-wrapper {
-  max-width: 1000px
+  max-width: 850px
 }
 
 .card-wrapper {
-  height: 320px;
-  width: 220px;
+  height: 310px;
+  width: 210px;
   border: black solid 1px;
   float: left;
 }
@@ -28,5 +28,14 @@ img {
 
 #game-status {
   display: inline;
-  /*float: right;*/
+  text-align: right;
+}
+
+#question-wrapper  {
+  display: none;
+  margin-top: 20px;
+}
+
+#question-select, #question-prefix {
+  display: inline;
 }
