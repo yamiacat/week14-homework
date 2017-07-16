@@ -11,16 +11,18 @@ class CardRenderer extends React.Component {
 
     const currentCards = this.props.allCards.map((card, index) => {
       let picURL = "";
+      let name = "???";
 
       if(card.showing === true) {
         picURL = card.pic
+        name = card.name
       } else {
         picURL = "/public/images/cardback.jpg"
       }
 
 
 
-      return <Card key={card.id} value={card.id} pic={picURL} name={card.name} flipCard={this.props.flipCard}></Card>
+      return <Card key={card.id} value={card.id} pic={picURL} name={name} flipCard={this.props.flipCard}></Card>
     });
 
 

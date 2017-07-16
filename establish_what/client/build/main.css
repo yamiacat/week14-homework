@@ -20,9 +20,13 @@ img {
   width: 220px;
   border: black solid 1px;
   float: left;
-  /*display: inline-block;*/
 }
 
 .card-name {
   margin-left: 80px;
+}
+
+#game-status {
+  display: inline;
+  /*float: right;*/
 }

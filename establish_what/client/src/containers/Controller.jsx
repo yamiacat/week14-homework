@@ -17,51 +17,73 @@ class Controller extends React.Component {
           id: 1,
           pic: "/public/images/ed209.jpg",
           name: "ED-209",
-          showing: true
+          showing: false
         },
         {
           id: 2,
           pic: "/public/images/hal9000.jpg",
           name: "HAL-9000",
-          showing: true
+          showing: false
         },
         {
           id: 3,
           pic: "/public/images/johnny5.jpg",
           name: "Johnny 5",
-          showing: true
+          showing: false
         },
         {
           id: 4,
           pic: "/public/images/pris.jpg",
           name: "Pris",
-          showing: true
+          showing: false
         },
         {
           id: 5,
           pic: "/public/images/robocop.jpg",
           name: "Robocop",
-          showing: true
+          showing: false
         },
         {
           id: 6,
           pic: "/public//images/t800.jpg",
           name: "T-800",
-          showing: true
+          showing: false
         },
         {
           id: 7,
           pic: "/public/images/walle.jpg",
           name: "Wall-E",
-          showing: true
+          showing: false
         }
-      ]
+      ],
+      theDroidURLookingFor: null
     }
     this.flipCard = this.flipCard.bind(this);
+    this.startGame = this.startGame.bind(this);
+  }
+
+  startGame(event) {
+    event.preventDefault();
+
+    const currentAllCards = this.state.allCards;
+    const selectedCard = currentAllCards[Math.floor(Math.random() * currentAllCards.length)]
+
+    this.setState({ theDroidURLookingFor: selectedCard});
+    this.flipAllCards();
+  }
+
+  flipAllCards() {
+    const currentAllCards = this.state.allCards;
+
+    const flippedAllCards = currentAllCards.map((card) => {
+        card.showing = true;
+        return card;
+    })
+    this.setState({ allCards: flippedAllCards})
+
   }
 
   flipCard(cardID) {
-    console.log("flipCard triggered", cardID);
     const currentAllCards = this.state.allCards;
 
     if(currentAllCards[cardID].showing == true) {
@@ -75,15 +97,20 @@ class Controller extends React.Component {
 
   render() {
 
+    const gameStatus = `${!this.state.theDroidURLookingFor ? "":"TARGET SELECTED, COMMENCE PUNY HU-MAN LOGIC"}`
+
     return(
       <div>
         <h1>ESTABLISH WHAT, HU-MAN.</h1>
-        <QuestionLayer allCards={this.state.allCards} flipCard={this.flipCard}></QuestionLayer>
+        <QuestionLayer
+          allCards={this.state.allCards}
+          flipCard={this.flipCard}
+          startGame={this.startGame}
+          gameStatus={gameStatus}
+          ></QuestionLayer>
       </div>
     )
-
   }
-
 }
 
 

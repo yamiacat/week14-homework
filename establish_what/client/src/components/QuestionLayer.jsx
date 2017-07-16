@@ -12,7 +12,12 @@ class QuestionLayer extends React.Component {
     return(
       <div>
         <CardRenderer allCards={this.props.allCards} flipCard={this.props.flipCard}></CardRenderer>
-        <h2>CALCULATE YOUR QUERY:</h2>
+        <h2>OPERATIONS:</h2>
+
+        <form onSubmit={this.props.startGame}>
+          <input type="submit" value="COMMENCE CALCULATION"></input>
+        </form>
+        <p id="game-status">{this.props.gameStatus}</p>
       </div>
     )
   }
