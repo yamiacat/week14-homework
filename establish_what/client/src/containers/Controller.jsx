@@ -106,6 +106,7 @@ class Controller extends React.Component {
     this.selectQuestion = this.selectQuestion.bind(this);
     this.submitQuestion = this.submitQuestion.bind(this);
     this.submitGuess = this.submitGuess.bind(this);
+    this.playAgain = this.playAgain.bind(this);
   }
 
   startGame(event) {
@@ -199,6 +200,10 @@ class Controller extends React.Component {
     }
   }
 
+  playAgain() {
+    
+  }
+
   render() {
 
     const gameStatus = `${!this.state.theDroidURLookingFor ? "":"TARGET SELECTED, COMMENCE PUNY HU-MAN LOGIC"}`
@@ -215,6 +220,7 @@ class Controller extends React.Component {
           selectQuestion={this.selectQuestion}
           answer={this.state.answer}
           submitGuess={this.submitGuess}
+          playAgain={this.playAgain}
           ></QuestionLayer>
       </div>
     )

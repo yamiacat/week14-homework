@@ -28,7 +28,7 @@ img {
 
 #game-status {
   display: inline;
-  text-align: right;
+  margin-top: 20px;
 }
 
 #question-wrapper  {
@@ -77,9 +77,12 @@ img {
 
 #win-wrapper {
   background-image: url(/public/images/win.jpg);
-
 }
 
 #lose-wrapper {
   background-image: url(/public/images/lose.jpg);
+}
+
+.play-again {
+  float: right;
 }

@@ -11,7 +11,7 @@ class QuestionLayer extends React.Component {
 
     return(
       <div>
-        <CardRenderer allCards={this.props.allCards} flipCard={this.props.flipCard}></CardRenderer>
+        <CardRenderer allCards={this.props.allCards} flipCard={this.props.flipCard} playAgain={this.props.playAgain}></CardRenderer>
         <h2>OPERATIONS:</h2>
 
         <div id="start-button-wrapper">
@@ -32,7 +32,7 @@ class QuestionLayer extends React.Component {
               <option value="leds">HAVE AWESOME GLOWING LEDS FOR AN OPTIC SYSTEM?</option>
               <option value="brains">HAVE A SQUISHY ORGANIC BRAIN?</option>
               <option value="kills">HEROICALLY MURDER INNOCENT HU-MANS?</option>
-              <option value="thumbs">HAS THOSE OPPOSABLE DIGITS YOU'RE SO PROUD OF?</option>
+              <option value="thumbs">HAVE THOSE OPPOSABLE DIGITS YOU'RE SO PROUD OF?</option>
             </select>
             <input type="submit" value="INPUT"></input>
           </form>
