@@ -151,6 +151,8 @@ class Controller extends React.Component {
 
   selectQuestion(event) {
     this.setState({ attributeToCheck: event.target.value})
+    const answerWrapper = document.getElementById("answer-wrapper");
+    answerWrapper.style.display = "none";
 
     console.log("selectQuestion hit", event.target.value);
   }
@@ -201,7 +203,7 @@ class Controller extends React.Component {
   }
 
   playAgain() {
-    
+
   }
 
   render() {
