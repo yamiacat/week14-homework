@@ -99,7 +99,8 @@ class Controller extends React.Component {
       theDroidURLookingFor: null,
       answer: "",
       attributeToCheck: "",
-      showingCards: 8
+      showingCards: 8,
+      winState: null
     }
     this.flipCard = this.flipCard.bind(this);
     this.startGame = this.startGame.bind(this);
@@ -154,25 +155,27 @@ class Controller extends React.Component {
     const answerWrapper = document.getElementById("answer-wrapper");
     answerWrapper.style.display = "none";
 
-    console.log("selectQuestion hit", event.target.value);
   }
 
   submitGuess(event) {
     event.preventDefault();
-    const winModal = document.getElementById("win-modal");
-    const loseModal = document.getElementById("lose-modal");
+
     const targetDroid = this.state.theDroidURLookingFor;
     const guessCard = this.state.allCards.filter((card) => {
       return card.showing == true;
     });
 
+    const winModal = document.getElementById("win-modal");
+    const loseModal = document.getElementById("lose-modal");
+
     if(guessCard[0].id == targetDroid.id) {
       console.log("WIIIIIIN");
       winModal.style.display = "block";
+      this.setState({winState: true})
     } else {
       console.log("LOOOOOOOOSE");
       loseModal.style.display = "block";
-
+      this.setState({winState: false})
     }
   }
 
@@ -208,6 +211,7 @@ class Controller extends React.Component {
 
   render() {
 
+    console.log("winstate in controller", this.state.winstate);
     const gameStatus = `${!this.state.theDroidURLookingFor ? "":"TARGET SELECTED, COMMENCE PUNY HU-MAN LOGIC"}`
 
     return(
@@ -223,6 +227,7 @@ class Controller extends React.Component {
           answer={this.state.answer}
           submitGuess={this.submitGuess}
           playAgain={this.playAgain}
+          winState={this.winState}
           ></QuestionLayer>
       </div>
     )

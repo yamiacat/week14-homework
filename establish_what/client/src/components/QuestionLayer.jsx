@@ -1,5 +1,7 @@
 import React from 'react';
 import CardRenderer from './CardRenderer.jsx';
+import {WinScreen} from './WinScreen.jsx';
+import {LoseScreen} from './LoseScreen.jsx';
 
 class QuestionLayer extends React.Component {
 
@@ -8,8 +10,12 @@ class QuestionLayer extends React.Component {
   }
 
   render() {
+    const currentWinState = this.props.winState;
+
+    console.log("winstate in questionlayer", this.props.winState);
 
     return(
+
       <div>
         <CardRenderer allCards={this.props.allCards} flipCard={this.props.flipCard} playAgain={this.props.playAgain}></CardRenderer>
         <h2>OPERATIONS:</h2>
@@ -52,6 +58,23 @@ class QuestionLayer extends React.Component {
             <input type="submit" value="SUBMIT FEEBLE GUESS"></input>
           </form>
         </div>
+
+        <div>
+       {currentWinState == true ? (
+         <WinScreen playAgain={this.props.playAgain}/>
+       ) : (
+         <WinScreen no={true} playAgain={this.props.playAgain}/>
+       )}
+      </div>
+
+
+      <div>
+     {currentWinState == false ? (
+       <LoseScreen playAgain={this.props.playAgain}/>
+     ) : (
+       <LoseScreen no={true} playAgain={this.props.playAgain}/>
+     )}
+    </div>
 
 
       </div>
